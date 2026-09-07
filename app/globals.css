@@ -1,0 +1,204 @@
+/* ── Google Fonts ────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
+@import "tailwindcss";
+
+@font-face {
+  font-family: "SFUIText";
+  src: url("/assets/font/SFUIText-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Chunky";
+  src: url("/assets/font/chunky%20font.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* ── Design Tokens (CSS Custom Properties) ──────── */
+:root {
+  /* Canvas & Substrates */
+  --background: #090909;
+  --surface: #111111;
+  --surface-low: #1c1b1b;
+  --surface-container: #201f1f;
+  --surface-high: #2a2a2a;
+  --surface-highest: #353534;
+  --surface-lowest: #0e0e0e;
+
+  /* Text */
+  --text-primary: #fff8e8;
+  --text-secondary: #e5c96e;
+  --text-gold: #e6c750;
+  --text-muted: #b8b09e;
+  --text-outline: #999079;
+
+  /* Clay Colors */
+  --clay-blue: #489bff;
+  --clay-aqua: #54ced7;
+  --clay-mint: #43dfa6;
+  --clay-lime: #91ce3e;
+  --clay-yellow: #ffd22a;
+  --clay-orange: #ff742f;
+  --clay-red: #ff4a3d;
+  --clay-purple: #bc68df;
+  --clay-pink: #f571b8;
+
+  /* Semantic */
+  --primary: #fff2d4;
+  --primary-container: #ffd22a;
+  --on-primary: #3c2f00;
+  --on-primary-container: #715a00;
+  --secondary: #ffb597;
+  --secondary-container: #c84d00;
+  --tertiary: #eff3ff;
+  --tertiary-container: #c1d8ff;
+  --tertiary-fixed-dim: #a6c8ff;
+
+  /* Font Families */
+  --font-headline: "Chunky", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* Existing body-text utility classes use the requested SFUIText font. */
+[class*="font-['Quicksand']"] {
+  font-family: var(--font-body) !important;
+}
+
+/* ── Base Styles ─────────────────────────────────── */
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--surface-lowest);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--primary-container);
+    color: var(--on-primary);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--surface-lowest);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--surface-highest);
+    border-radius: 9999px;
+  }
+}
+
+/* ── Clay Shadow Utilities ───────────────────────── */
+@layer utilities {
+  .clay-shadow-sm {
+    box-shadow:
+      inset 0 2px 1px rgba(255, 255, 255, 0.08),
+      0 4px 0 var(--surface-lowest),
+      0 8px 12px rgba(0, 0, 0, 0.7);
+  }
+
+  .clay-shadow-md {
+    box-shadow:
+      inset 0 2px 2px rgba(255, 255, 255, 0.1),
+      0 6px 0 var(--surface-lowest),
+      0 14px 20px rgba(0, 0, 0, 0.75);
+  }
+
+  .clay-shadow-lg {
+    box-shadow:
+      inset 0 3px 2px rgba(255, 255, 255, 0.15),
+      0 8px 0 var(--surface-lowest),
+      0 20px 30px rgba(0, 0, 0, 0.85);
+  }
+
+  .clay-inset {
+    box-shadow:
+      inset 0 4px 8px rgba(0, 0, 0, 0.9),
+      0 2px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .clay-button-press {
+    box-shadow: 0 1px 0 var(--surface-lowest);
+    transform: translateY(5px);
+  }
+}
+
+/* ── Stop-Motion Animations ──────────────────────── */
+@keyframes clay-wobble {
+  0%,
+  100% {
+    transform: rotate(-1deg);
+  }
+  25% {
+    transform: rotate(1.5deg) translateY(-2px);
+  }
+  50% {
+    transform: rotate(-0.5deg);
+  }
+  75% {
+    transform: rotate(1deg) translateY(-1px);
+  }
+}
+
+@keyframes clay-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes clay-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.97);
+  }
+}
+
+@keyframes clay-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-clay-wobble {
+  animation: clay-wobble 2s steps(8) infinite;
+}
+
+.animate-clay-bounce {
+  animation: clay-bounce 1.2s steps(6) infinite;
+}
+
+.animate-clay-pulse {
+  animation: clay-pulse 1.5s steps(4) infinite;
+}
+
+.animate-clay-spin {
+  animation: clay-spin 1.5s steps(12) infinite;
+}
