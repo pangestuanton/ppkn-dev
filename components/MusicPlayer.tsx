@@ -41,12 +41,11 @@ export default function MusicPlayer({ track }: MusicPlayerProps) {
   };
 
   return (
-    <div className="flex w-full max-w-xs items-center gap-3 rounded-full bg-[#1c1b1b]/90 px-3 py-2 shadow-[inset_0_2px_4px_rgba(0,0,0,.8),0_4px_0_#090909]">
-      <button type="button" onClick={togglePlayback} disabled={!available} aria-label={playing ? `Jeda ${current.label}` : `Putar ${current.label}`} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#FFD22A] text-[#3c2f00] shadow-[inset_0_2px_2px_rgba(255,255,255,.6),0_4px_0_#A07400] transition-transform hover:-translate-y-0.5 active:translate-y-1 disabled:cursor-not-allowed disabled:opacity-50">
+    <div className="fixed bottom-4 right-4 z-40">
+      <button type="button" onClick={togglePlayback} disabled={!available} title={current.label} aria-label={playing ? `Jeda ${current.label}` : `Putar ${current.label}`} className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#FFD22A] text-[#3c2f00] shadow-[inset_0_2px_2px_rgba(255,255,255,.6),0_4px 0_#A07400,0_8px 14px_rgba(0,0,0,.65)] transition-transform hover:-translate-y-0.5 active:translate-y-1 disabled:cursor-not-allowed disabled:opacity-50">
         {playing ? <Pause className="h-5 w-5" aria-hidden="true" /> : <Play className="ml-0.5 h-5 w-5" aria-hidden="true" />}
       </button>
-      <Music className="h-4 w-4 shrink-0 text-[#54CED7]" aria-hidden="true" />
-      <div className="min-w-0"><p className="truncate font-['Quicksand'] text-xs font-bold text-[#FFF8E8]">{current.label}</p><p className="font-['Quicksand'] text-[10px] font-semibold text-[#999079]">{available ? "Tekan untuk memutar" : "File musik belum tersedia"}</p></div>
+      <Music className="pointer-events-none absolute -right-1 -top-1 h-4 w-4 rounded-full bg-[#54CED7] p-0.5 text-[#003940]" aria-hidden="true" />
       <audio ref={audioRef} src={current.file} loop autoPlay preload="none" onEnded={() => setPlaying(false)} onError={() => setAvailable(false)} />
     </div>
   );
