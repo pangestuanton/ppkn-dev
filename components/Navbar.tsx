@@ -8,7 +8,7 @@ import { siteConfig } from "@/config/site";
 
 const navLinks = [
   { label: "Beranda", path: "/", dotColor: "#edc212" },
-  { label: "Kuis", path: "/quiz", dotColor: "#ffb597" },
+  { label: "Petunjuk", path: "/petunjuk", dotColor: "#ffb597" },
   { label: "Leaderboard", path: "/leaderboard", dotColor: "#a6c8ff" },
 ];
 
