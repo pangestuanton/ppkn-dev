@@ -10,6 +10,7 @@ import QuestionNavigator from "@/components/QuestionNavigator";
 import SubmitModal from "@/components/SubmitModal";
 import LoadingState from "@/components/LoadingState";
 import ErrorState from "@/components/ErrorState";
+import { siteConfig } from "@/config/site";
 
 export default function QuizPage() {
   const router = useRouter();
@@ -140,6 +141,10 @@ export default function QuizPage() {
         <LoadingState message="MENGHITUNG NILAI..." />
       </div>
     );
+  }
+
+  if (!siteConfig.features.quizEnabled) {
+    return <div className="mx-auto flex min-h-[calc(100svh-4rem)] max-w-xl items-center justify-center px-4 text-center"><div className="rounded-3xl bg-[#201f1f] p-8 shadow-[0_10px_0_#090909]"><h1 className="font-['Chunky'] text-3xl text-[#FFD22A]">KUIS TERKUNCI</h1><p className="mt-3 font-['Quicksand'] text-sm font-semibold text-[#d1c6ac]">Fitur kuis belum dibuka untuk digunakan.</p></div></div>;
   }
 
   if (!currentQuestion) return null;

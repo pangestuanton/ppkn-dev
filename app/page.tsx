@@ -151,13 +151,14 @@ export default function LandingPage() {
           <button
             type="button"
             onClick={handleStart}
+            disabled={!siteConfig.features.quizEnabled}
             className="w-full sm:w-auto min-h-12 shrink-0 inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 rounded-2xl bg-[#FF742F] text-[#FFF8E8] font-['Bricolage_Grotesque'] font-bold text-lg tracking-wide uppercase cursor-pointer select-none
               shadow-[inset_0_3px_2px_rgba(255,255,255,0.55),inset_0_-4px_5px_#8F2D00,0_7px_0px_#6A1E00,0_16px_22px_rgba(0,0,0,0.85)]
               hover:-translate-y-1 hover:rotate-1
               active:translate-y-1.5 active:shadow-[0_1px_0px_#6A1E00] active:scale-[0.98]
               transition-[transform,box-shadow] duration-75"
           >
-            <span>MULAI KUIS</span>
+            <span>{siteConfig.features.quizEnabled ? "MULAI KUIS" : "KUIS TERKUNCI"}</span>
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z" />
             </svg>

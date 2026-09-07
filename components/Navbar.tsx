@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Lock, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/config/site";
 
@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Beranda", path: "/", dotColor: "#edc212" },
   { label: "Materi", path: "/materi", dotColor: "#43dfa6" },
   { label: "Petunjuk", path: "/petunjuk", dotColor: "#ffb597" },
-  { label: "Leaderboard", path: "/leaderboard", dotColor: "#a6c8ff" },
+  { label: "Leaderboard", path: "/leaderboard", dotColor: "#a6c8ff", locked: true },
 ];
 
 export default function Navbar() {
@@ -36,18 +36,10 @@ export default function Navbar() {
         <nav id="primary-navigation" aria-label="Navigasi utama" className={`${menuOpen ? "flex" : "hidden"} absolute top-full left-4 right-4 flex-col items-stretch gap-2 bg-[#1c1b1b] p-3 rounded-2xl shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)] md:static md:flex md:flex-row md:items-center md:gap-4 md:bg-[#1c1b1b]/80 md:px-4 md:py-2 md:rounded-full`}>
           {navLinks.map((link) => {
             const isActive = pathname === link.path;
-            return (
-              <Link
+            return link.locked ? <span
                 key={link.path}
-                href={link.path}
-                aria-current={isActive ? "page" : undefined}
-                onClick={() => setMenuPath(null)}
-                className={`min-h-11 flex items-center gap-1.5 px-4 py-2 rounded-full font-['Quicksand'] font-bold text-sm tracking-wide transition-colors
-                  ${
-                    isActive
-                      ? "bg-[#2a2a2a] text-[#FFD22A] shadow-[0_3px_0px_#131313]"
-                      : "text-[#d1c6ac] hover:text-[#FFD22A]"
-                  }`}
+                aria-disabled="true" title="Leaderboard belum tersedia"
+                className="min-h-11 flex cursor-not-allowed items-center gap-1.5 rounded-full px-4 py-2 font-['Quicksand'] text-sm font-bold tracking-wide text-[#7a7258]"
               >
                 <span
                   className="w-2 h-2 rounded-full"
@@ -56,9 +48,10 @@ export default function Navbar() {
                     boxShadow: `0 0 6px ${link.dotColor}`,
                   }}
                 />
-                {link.label}
-              </Link>
-            );
+                {link.label}<Lock className="h-3.5 w-3.5" aria-hidden="true" />
+              </span> : <Link key={link.path} href={link.path} aria-current={isActive ? "page" : undefined} onClick={() => setMenuPath(null)} className={`min-h-11 flex items-center gap-1.5 px-4 py-2 rounded-full font-['Quicksand'] font-bold text-sm tracking-wide transition-colors ${isActive ? "bg-[#2a2a2a] text-[#FFD22A] shadow-[0_3px_0px_#131313]" : "text-[#d1c6ac] hover:text-[#FFD22A]"}`}>
+                <span className="h-2 w-2 rounded-full" style={{ backgroundColor: link.dotColor, boxShadow: `0 0 6px ${link.dotColor}` }} />{link.label}
+              </Link>;
           })}
         </nav>
 

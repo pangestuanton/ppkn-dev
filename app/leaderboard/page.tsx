@@ -8,6 +8,7 @@ import LeaderboardTable from "@/components/LeaderboardTable";
 import LoadingState from "@/components/LoadingState";
 import ErrorState from "@/components/ErrorState";
 import MusicPlayer from "@/components/MusicPlayer";
+import { siteConfig } from "@/config/site";
 
 export default function LeaderboardPage() {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
@@ -32,6 +33,10 @@ export default function LeaderboardPage() {
   useEffect(() => {
     fetchLeaderboard();
   }, [fetchLeaderboard]);
+
+  if (!siteConfig.features.leaderboardEnabled) {
+    return <div className="mx-auto flex min-h-[calc(100svh-4rem)] max-w-xl items-center justify-center px-4 text-center"><div className="rounded-3xl bg-[#201f1f] p-8 shadow-[0_10px_0_#090909]"><h1 className="font-['Chunky'] text-3xl text-[#FFD22A]">LEADERBOARD TERKUNCI</h1><p className="mt-3 font-['Quicksand'] text-sm font-semibold text-[#d1c6ac]">Fitur leaderboard belum dibuka untuk digunakan.</p></div></div>;
+  }
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 py-6 sm:py-8 flex flex-col items-center gap-6 sm:gap-8 select-none relative">
