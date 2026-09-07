@@ -5,7 +5,7 @@ export const siteConfig = {
   program: "Pendidikan Pancasila dan Kewarganegaraan",
   module: "Modul Perkembangan Moral",
   group: "Kelompok 6",
-  features: { quizEnabled: false, leaderboardEnabled: false },
+  features: { quizEnabled: true, leaderboardEnabled: true },
   description:
     "Uji pemahamanmu tentang perkembangan penalaran moral dan teori Lawrence Kohlberg melalui kuis interaktif.",
   quizType: "Pilihan Ganda",
