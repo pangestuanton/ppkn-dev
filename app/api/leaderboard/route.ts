@@ -24,7 +24,7 @@ export async function GET() {
   } catch (error) {
     console.error("Leaderboard error:", error);
     return NextResponse.json(
-      { error: "Gagal memuat papan peringkat", entries: [] },
+      { error: "Gagal memuat leaderboard", entries: [] },
       { status: 500 }
     );
   }

@@ -18,11 +18,11 @@ export default function LeaderboardPage() {
     setError("");
     try {
       const res = await fetch("/api/leaderboard");
-      if (!res.ok) throw new Error("Gagal memuat papan peringkat");
+      if (!res.ok) throw new Error("Gagal memuat leaderboard");
       const data = await res.json();
       setEntries(data.entries);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal memuat papan peringkat");
+      setError(err instanceof Error ? err.message : "Gagal memuat leaderboard");
     } finally {
       setIsLoading(false);
     }
@@ -46,7 +46,7 @@ export default function LeaderboardPage() {
       </div>
 
       {/* Clay Title */}
-      <ClayTitle text="PAPAN PERINGKAT" size="md" />
+      <ClayTitle text="LEADERBOARD" size="md" />
 
       {/* Subtitle */}
       <p className="font-['Quicksand'] font-semibold text-sm sm:text-base text-[#d1c6ac] text-center">

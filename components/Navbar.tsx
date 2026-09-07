@@ -9,7 +9,7 @@ import { siteConfig } from "@/config/site";
 const navLinks = [
   { label: "Beranda", path: "/", dotColor: "#edc212" },
   { label: "Kuis", path: "/quiz", dotColor: "#ffb597" },
-  { label: "Papan Peringkat", path: "/leaderboard", dotColor: "#a6c8ff" },
+  { label: "Leaderboard", path: "/leaderboard", dotColor: "#a6c8ff" },
 ];
 
 export default function Navbar() {
