@@ -29,6 +29,12 @@
 .font-joshico { font-family: "Joshico", sans-serif; }
 .font-arimo { font-family: "Arimo", sans-serif; }
 
+.materi-content h2,
+.materi-content h3 {
+  font-family: "Arimo", sans-serif;
+  font-weight: 700;
+}
+
 /* ── Design Tokens (CSS Custom Properties) ──────── */
 :root {
   /* Canvas & Substrates */
