@@ -3,11 +3,11 @@
 import { Music, Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-type MusicPlayerProps = { track: "home" | "quiz" };
+type MusicPlayerProps = { track: "home" | "leaderboard" };
 
 const tracks = {
-  home: { label: "Musik Beranda", file: "/music/beranda.mp3" },
-  quiz: { label: "Musik Kuis", file: "/music/kuis.mp3" },
+  home: { label: "Musik Umum", file: "/music/ssstik.io_1788770269265.mp3" },
+  leaderboard: { label: "Musik Leaderboard", file: "/music/ssstik.io_1788770311972.mp3" },
 };
 
 export default function MusicPlayer({ track }: MusicPlayerProps) {

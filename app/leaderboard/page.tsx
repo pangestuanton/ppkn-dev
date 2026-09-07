@@ -7,6 +7,7 @@ import LeaderboardPodium from "@/components/LeaderboardPodium";
 import LeaderboardTable from "@/components/LeaderboardTable";
 import LoadingState from "@/components/LoadingState";
 import ErrorState from "@/components/ErrorState";
+import MusicPlayer from "@/components/MusicPlayer";
 
 export default function LeaderboardPage() {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
@@ -47,6 +48,8 @@ export default function LeaderboardPage() {
 
       {/* Clay Title */}
       <ClayTitle text="LEADERBOARD" size="md" />
+
+      <MusicPlayer track="leaderboard" />
 
       {/* Subtitle */}
       <p className="font-['Quicksand'] font-semibold text-sm sm:text-base text-[#d1c6ac] text-center">

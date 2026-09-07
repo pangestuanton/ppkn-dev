@@ -10,7 +10,6 @@ import QuestionNavigator from "@/components/QuestionNavigator";
 import SubmitModal from "@/components/SubmitModal";
 import LoadingState from "@/components/LoadingState";
 import ErrorState from "@/components/ErrorState";
-import MusicPlayer from "@/components/MusicPlayer";
 
 export default function QuizPage() {
   const router = useRouter();
@@ -149,7 +148,6 @@ export default function QuizPage() {
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 py-4 select-none">
       {/* Top Header */}
       <div className="sticky top-16 md:top-20 z-40 w-full flex flex-col gap-3 mb-6 sm:mb-8 py-3 bg-[#0e0e0e]/95 backdrop-blur-md">
-        <div className="flex justify-end"><MusicPlayer track="quiz" /></div>
         <div className="flex items-center justify-between gap-2 px-1">
           <div className="flex items-center gap-3">
             <span className="inline-flex items-center gap-1.5 px-2 sm:px-4 py-1.5 rounded-full bg-[#2a2a2a] text-[#FFD22A] font-['Quicksand'] font-bold text-[10px] sm:text-sm shadow-[inset_0_2px_2px_rgba(255,255,255,0.15),0_4px_0_#0e0e0e]">
