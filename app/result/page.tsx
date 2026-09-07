@@ -27,16 +27,16 @@ export default function ResultPage() {
 
   if (!result) {
     return (
-      <div className="w-full max-w-7xl mx-auto px-6 lg:px-20 min-h-[calc(100vh-5rem)] flex items-center justify-center">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 min-h-[calc(100svh-4rem)] md:min-h-[calc(100svh-5rem)] flex items-center justify-center">
         <LoadingState message="MEMUAT HASIL..." />
       </div>
     );
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-6 lg:px-20 py-8 flex flex-col items-center gap-8 select-none relative">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 py-6 sm:py-8 flex flex-col items-center gap-6 sm:gap-8 select-none relative">
       {/* Ambient Glow */}
-      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#FFD22A]/8 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-[300px] bg-[#FFD22A]/8 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Header Info */}
       <div className="flex items-center gap-2 text-center">
@@ -50,7 +50,7 @@ export default function ResultPage() {
       <ClayTitle text="HASIL KUIS" size="md" />
 
       {/* Participant Info */}
-      <div className="flex items-center gap-2">
+      <div className="max-w-full flex flex-wrap justify-center items-center gap-2 text-center">
         <span className="w-2.5 h-2.5 rounded-full bg-[#54CED7] shadow-[0_0_6px_#54CED7]" />
         <span className="font-['Quicksand'] font-bold text-base text-[#FFF8E8]">
           {result.name}
@@ -71,11 +71,11 @@ export default function ResultPage() {
       </div>
 
       {/* CTA Buttons */}
-      <div className="flex flex-col sm:flex-row items-center gap-4 mt-4 mb-8">
+      <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-4 mb-8">
         <button
           type="button"
           onClick={() => router.push("/leaderboard")}
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#201f1f] text-[#FFF8E8] font-['Bricolage_Grotesque'] font-bold text-sm uppercase
+          className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-4 sm:px-8 py-4 rounded-full bg-[#201f1f] text-[#FFF8E8] font-['Bricolage_Grotesque'] font-bold text-sm uppercase
             shadow-[inset_0_2px_2px_rgba(255,255,255,0.08),0_5px_0_#0c0c0c,0_10px_16px_rgba(0,0,0,0.7)]
             hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0_1px_0_#0c0c0c]
             transition-all"
@@ -93,7 +93,7 @@ export default function ResultPage() {
             sessionStorage.removeItem("participantName");
             router.push("/");
           }}
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#FFD22A] text-[#3c2f00] font-['Bricolage_Grotesque'] font-bold text-sm uppercase
+          className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-4 sm:px-8 py-4 rounded-full bg-[#FFD22A] text-[#3c2f00] font-['Bricolage_Grotesque'] font-bold text-sm uppercase
             shadow-[inset_0_3px_2px_rgba(255,255,255,0.6),0_6px_0_#a07400,0_12px_20px_rgba(0,0,0,0.6)]
             hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0_2px_0_#a07400]
             transition-all"

@@ -13,7 +13,7 @@ export default function ProgressBar({ current, total }: ProgressBarProps) {
   const progress = total > 0 ? (current / total) * 100 : 0;
 
   return (
-    <div className="w-full h-5 rounded-full bg-[#0e0e0e] p-1 shadow-[inset_0_3px_6px_rgba(0,0,0,0.9)] flex items-center relative">
+    <div role="progressbar" aria-label="Progres soal" aria-valuemin={0} aria-valuemax={total} aria-valuenow={current} className="w-full h-5 rounded-full bg-[#0e0e0e] p-1 shadow-[inset_0_3px_6px_rgba(0,0,0,0.9)] flex items-center relative">
       {/* Filled Track */}
       <div
         className="h-full rounded-full relative flex items-center justify-end transition-all duration-300"

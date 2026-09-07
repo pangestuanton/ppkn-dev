@@ -30,7 +30,7 @@ export default function ClayBadge({
         hover:-translate-y-1 transition-transform cursor-default"
     >
       <div
-        className="w-10 h-10 rounded-xl flex items-center justify-center"
+        className="w-10 h-10 shrink-0 rounded-xl flex items-center justify-center"
         style={{
           backgroundColor: color,
           color: textColor,
@@ -40,8 +40,8 @@ export default function ClayBadge({
       >
         {icon}
       </div>
-      <div className="flex flex-col text-left">
-        <span className="font-['Bricolage_Grotesque'] font-bold text-lg text-[#FFF8E8]">
+      <div className="min-w-0 flex flex-col text-left">
+        <span className="font-['Bricolage_Grotesque'] font-bold text-base lg:text-lg text-[#FFF8E8]">
           {title}
         </span>
         <span className="font-['Quicksand'] font-semibold text-xs text-[#E6C750]">

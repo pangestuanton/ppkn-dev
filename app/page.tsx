@@ -6,6 +6,7 @@ import ClayTitle from "@/components/ClayTitle";
 import ClayBadge from "@/components/ClayBadge";
 import { siteConfig } from "@/config/site";
 import { BookOpen, CheckSquare, Award } from "lucide-react";
+import MaterialQr from "@/components/MaterialQr";
 
 export default function LandingPage() {
   const [name, setName] = useState("");
@@ -28,11 +29,11 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-6 lg:px-20 flex flex-col items-center justify-center min-h-[calc(100vh-5rem)] relative select-none">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 flex flex-col items-center justify-center min-h-[calc(100svh-4rem)] md:min-h-[calc(100svh-5rem)] py-6 sm:py-8 relative select-none">
       {/* Ambient Glows */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#FFD22A]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 -left-20 w-80 h-80 bg-[#c84d00]/15 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/3 -right-24 w-96 h-96 bg-[#c1d8ff]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-full max-w-[700px] h-[350px] bg-[#FFD22A]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="hidden lg:block absolute bottom-10 left-0 w-80 h-80 bg-[#c84d00]/15 rounded-full blur-[100px] pointer-events-none" />
+      <div className="hidden lg:block absolute top-1/3 right-0 w-96 h-96 bg-[#c1d8ff]/10 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Decorative Clay Props */}
       <div className="hidden lg:flex absolute top-12 left-8 items-center justify-center w-16 h-16 rounded-full bg-[#FFD22A] text-[#715A00] shadow-[0_6px_0px_#A07400,0_16px_24px_rgba(0,0,0,0.85)] -rotate-12">
@@ -79,19 +80,20 @@ export default function LandingPage() {
           <span className="font-['Quicksand'] font-bold text-xs uppercase tracking-wider text-[#E6C750]">
             {siteConfig.title}
           </span>
-          <span className="font-['Quicksand'] font-semibold text-xs text-[#999079] px-1">
+          <span className="font-['Quicksand'] font-semibold text-xs text-[#999079] px-1 hidden sm:inline">
             •
           </span>
           <span className="font-['Quicksand'] font-semibold text-xs text-[#d1c6ac] hidden sm:inline">
             Modul Dilema Moral Heinz
           </span>
         </div>
+
       </div>
 
       {/* Clay Title */}
       <div className="w-full max-w-5xl flex flex-col items-center text-center relative z-10 px-2">
         <ClayTitle text="MORAL" size="lg" />
-        <div className="mt-1 sm:mt-2">
+        <div className="w-full mt-3 sm:mt-4">
           <ClayTitle text="DEVELOPMENT" size="md" />
         </div>
 
@@ -103,14 +105,14 @@ export default function LandingPage() {
         </div>
 
         {/* Description */}
-        <p className="font-['Quicksand'] font-semibold text-base text-[#E6C750] max-w-2xl mx-auto px-4 leading-relaxed">
+        <p className="font-['Quicksand'] font-semibold text-sm sm:text-base text-[#E6C750] max-w-2xl mx-auto sm:px-4 leading-relaxed">
           {siteConfig.description}
         </p>
 
         {/* Input & CTA */}
-        <div className="w-full max-w-xl mt-8 px-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
+        <div className="w-full max-w-xl mt-8 sm:px-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
           {/* Input */}
-          <div className="relative flex-1">
+          <div className="relative min-w-0 flex-1">
             <div
               className={`w-full flex items-center bg-[#070707] rounded-2xl px-4 py-3 transition-all
                 ${
@@ -124,6 +126,8 @@ export default function LandingPage() {
               </svg>
               <input
                 type="text"
+                aria-label="Nama lengkap"
+                autoComplete="name"
                 value={name}
                 onChange={(e) => {
                   setName(e.target.value);
@@ -133,7 +137,7 @@ export default function LandingPage() {
                   if (e.key === "Enter") handleStart();
                 }}
                 placeholder="Masukkan nama lengkap..."
-                className="w-full bg-transparent text-[#FFF8E8] font-['Quicksand'] font-medium text-base placeholder-[#7A7258] outline-none"
+                className="min-w-0 min-h-6 w-full bg-transparent text-[#FFF8E8] font-['Quicksand'] font-medium text-base placeholder-[#7A7258] outline-none"
                 style={{ caretColor: "#43DFA6" }}
               />
             </div>
@@ -146,7 +150,7 @@ export default function LandingPage() {
           <button
             type="button"
             onClick={handleStart}
-            className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-2xl bg-[#FF742F] text-[#FFF8E8] font-['Bricolage_Grotesque'] font-bold text-lg tracking-wide uppercase cursor-pointer select-none
+            className="w-full sm:w-auto min-h-12 shrink-0 inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 rounded-2xl bg-[#FF742F] text-[#FFF8E8] font-['Bricolage_Grotesque'] font-bold text-lg tracking-wide uppercase cursor-pointer select-none
               shadow-[inset_0_3px_2px_rgba(255,255,255,0.55),inset_0_-4px_5px_#8F2D00,0_7px_0px_#6A1E00,0_16px_22px_rgba(0,0,0,0.85)]
               hover:-translate-y-1 hover:rotate-1
               active:translate-y-1.5 active:shadow-[0_1px_0px_#6A1E00] active:scale-[0.98]
@@ -167,7 +171,7 @@ export default function LandingPage() {
         )}
 
         {/* Feature Badges */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl px-4">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl sm:px-4">
           <ClayBadge
             icon={<BookOpen className="w-5 h-5" />}
             title={`${siteConfig.quizLabels.soal}`}
@@ -216,6 +220,11 @@ export default function LandingPage() {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Materi QR ditempatkan paling bawah agar fokus tetap pada kuis */}
+        <div className="w-full max-w-xl mt-6">
+          <MaterialQr />
         </div>
       </div>
     </div>

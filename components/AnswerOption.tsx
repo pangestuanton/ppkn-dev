@@ -26,7 +26,8 @@ export default function AnswerOption({
     <button
       type="button"
       onClick={onSelect}
-      className={`group text-left w-full p-4 rounded-2xl transition-all flex items-center justify-between
+      aria-pressed={isSelected}
+      className={`group text-left w-full min-h-16 gap-3 p-3 sm:p-4 rounded-2xl transition-all flex items-center justify-between
         ${
           isSelected
             ? "bg-[#2a2a2a] shadow-[inset_0_2px_2px_rgba(255,210,42,0.4),0_6px_0_#715a00,0_12px_20px_rgba(255,210,42,0.15)] ring-2 ring-[#FFD22A]"
@@ -34,7 +35,7 @@ export default function AnswerOption({
         }
         active:translate-y-1 active:shadow-[0_2px_0_#0c0c0c]`}
     >
-      <div className="flex items-center gap-4">
+      <div className="min-w-0 flex items-center gap-3 sm:gap-4">
         {/* Clay Badge Letter */}
         <div
           className="w-11 h-11 rounded-full flex items-center justify-center font-['Bricolage_Grotesque'] font-bold text-lg select-none shrink-0"
@@ -47,7 +48,7 @@ export default function AnswerOption({
           {letter}
         </div>
         <span
-          className={`font-['Quicksand'] font-bold text-lg ${
+          className={`font-['Quicksand'] font-bold text-base sm:text-lg leading-relaxed ${
             isSelected
               ? "text-[#FFD22A]"
               : "text-[#e5e2e1] group-hover:text-[#FFD22A]"

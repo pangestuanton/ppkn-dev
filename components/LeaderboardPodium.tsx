@@ -24,7 +24,7 @@ export default function LeaderboardPodium({ entries }: LeaderboardPodiumProps) {
     ? [top3[1], top3[0]]
     : [top3[0]];
 
-  const podiumHeights = ["h-28", "h-36", "h-24"];
+  const podiumHeights = ["h-24 sm:h-36", "h-20 sm:h-28", "h-16 sm:h-24"];
   const podiumIndexMap = top3.length >= 3 ? [1, 0, 2] : top3.length === 2 ? [1, 0] : [0];
 
   return (
@@ -36,15 +36,15 @@ export default function LeaderboardPodium({ entries }: LeaderboardPodiumProps) {
         </h3>
       </div>
 
-      <div className="flex items-end justify-center gap-4 mb-8">
+      <div className="flex items-end justify-center gap-2 sm:gap-4 mb-8">
         {podiumOrder.map((entry, i) => {
           const originalIndex = podiumIndexMap[i];
           const tColor = trophyColors[originalIndex];
           const tShadow = trophyShadows[originalIndex];
-          const height = podiumHeights[i] || "h-24";
+          const height = podiumHeights[originalIndex] || "h-24";
 
           return (
-            <div key={entry.rank} className="flex flex-col items-center gap-2 flex-1 max-w-[200px]">
+            <div key={entry.rank} className="flex flex-col items-center gap-2 min-w-0 flex-1 max-w-[200px]">
               {/* Trophy Icon */}
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center mb-1"
@@ -59,7 +59,7 @@ export default function LeaderboardPodium({ entries }: LeaderboardPodiumProps) {
               </div>
 
               {/* Name */}
-              <span className="font-['Quicksand'] font-bold text-sm text-[#FFF8E8] text-center truncate w-full">
+              <span className="font-['Quicksand'] font-bold text-xs sm:text-sm text-[#FFF8E8] text-center w-full">
                 {entry.name}
               </span>
 

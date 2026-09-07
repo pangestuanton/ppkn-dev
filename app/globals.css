@@ -74,6 +74,21 @@
   body {
     margin: 0;
     padding: 0;
+    overflow-x: clip;
+    overflow-wrap: anywhere;
+  }
+
+  html {
+    scroll-padding-top: 11rem;
+  }
+
+  button, a, input {
+    touch-action: manipulation;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--clay-yellow);
+    outline-offset: 4px;
   }
 
   body {

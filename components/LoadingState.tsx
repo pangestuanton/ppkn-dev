@@ -3,7 +3,7 @@
  */
 export default function LoadingState({ message = "MENGHITUNG NILAI..." }: { message?: string }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-6 py-16">
+    <div className="w-full min-w-0 text-center flex flex-col items-center justify-center gap-6 py-16">
       {/* Spinning Clay Orb */}
       <div className="relative">
         <div

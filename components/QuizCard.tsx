@@ -20,7 +20,7 @@ export default function QuestionCard({
   const ones = displayNum[1];
 
   return (
-    <div className="flex flex-col justify-between bg-[#201f1f] p-6 lg:p-8 rounded-2xl shadow-[inset_0_2px_2px_rgba(255,255,255,0.06),0_18px_36px_rgba(0,0,0,0.85)] relative overflow-hidden">
+    <div className="flex flex-col justify-between bg-[#201f1f] p-4 sm:p-6 lg:p-8 rounded-2xl shadow-[inset_0_2px_2px_rgba(255,255,255,0.06),0_18px_36px_rgba(0,0,0,0.85)] relative overflow-hidden">
       {/* Background Ambient Blob */}
       <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full bg-[#FFD22A]/10 blur-3xl pointer-events-none" />
 
@@ -41,16 +41,16 @@ export default function QuestionCard({
         </div>
 
         {/* Question Text */}
-        <h2 className="font-['Chunky'] font-extrabold text-2xl lg:text-4xl text-[#FFD22A] leading-tight tracking-tight">
+        <h2 className="font-['Chunky'] font-extrabold text-xl sm:text-2xl lg:text-4xl text-[#FFD22A] leading-tight tracking-tight">
           {question.question}
         </h2>
 
         {/* Hint */}
         {question.hint && (
           <div className="mt-6 pt-4 flex items-center gap-3">
-            <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 bg-[#353534] shadow-[0_6px_0_#0e0e0e,inset_0_2px_2px_rgba(255,255,255,0.1)] flex items-center justify-center">
+            <div className="w-12 h-12 sm:w-20 sm:h-20 rounded-2xl overflow-hidden flex-shrink-0 bg-[#353534] shadow-[0_6px_0_#0e0e0e,inset_0_2px_2px_rgba(255,255,255,0.1)] flex items-center justify-center">
               <svg
-                className="w-10 h-10 text-[#a6c8ff]"
+                className="w-7 h-7 sm:w-10 sm:h-10 text-[#a6c8ff]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

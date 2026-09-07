@@ -16,7 +16,7 @@ export default function ResultCard({ result }: ResultCardProps) {
   const color = getScoreColor(result.score);
 
   return (
-    <div className="bg-[#201f1f] p-6 lg:p-8 rounded-2xl shadow-[inset_0_2px_2px_rgba(255,255,255,0.06),0_18px_36px_rgba(0,0,0,0.85)] text-center">
+    <div className="bg-[#201f1f] p-4 sm:p-6 lg:p-8 rounded-2xl shadow-[inset_0_2px_2px_rgba(255,255,255,0.06),0_18px_36px_rgba(0,0,0,0.85)] text-center">
       {/* Score Label Badge */}
       <div className="mb-2">
         <span className="font-['Quicksand'] font-bold text-xs text-[#E6C750] uppercase tracking-widest">
@@ -27,7 +27,7 @@ export default function ResultCard({ result }: ResultCardProps) {
       {/* Large Score */}
       <div className="flex items-baseline justify-center gap-1 mb-4">
         <span
-          className="font-['Bricolage_Grotesque'] font-extrabold text-7xl lg:text-8xl"
+          className="font-['Bricolage_Grotesque'] font-extrabold text-6xl sm:text-7xl lg:text-8xl"
           style={{
             color,
             textShadow: `0 6px 0 rgba(0,0,0,0.45), 0 12px 18px rgba(0,0,0,0.7)`,
@@ -47,7 +47,7 @@ export default function ResultCard({ result }: ResultCardProps) {
 
       {/* Achievement Badge */}
       <div
-        className="inline-flex items-center gap-2 px-6 py-2 rounded-full mb-6"
+        className="inline-flex items-center max-w-full gap-2 px-3 sm:px-6 py-2 rounded-full mb-6"
         style={{
           backgroundColor: `${color}20`,
           border: `2px solid ${color}`,

@@ -33,9 +33,9 @@ export default function LeaderboardPage() {
   }, [fetchLeaderboard]);
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-6 lg:px-20 py-8 flex flex-col items-center gap-8 select-none relative">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 py-6 sm:py-8 flex flex-col items-center gap-6 sm:gap-8 select-none relative">
       {/* Ambient Glow */}
-      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#a6c8ff]/8 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-[300px] bg-[#a6c8ff]/8 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Header */}
       <div className="flex items-center gap-2 text-center">
@@ -49,7 +49,7 @@ export default function LeaderboardPage() {
       <ClayTitle text="PAPAN PERINGKAT" size="md" />
 
       {/* Subtitle */}
-      <p className="font-['Quicksand'] font-semibold text-base text-[#d1c6ac] text-center">
+      <p className="font-['Quicksand'] font-semibold text-sm sm:text-base text-[#d1c6ac] text-center">
         Moral Development Quiz • Peringkat Nilai Mahasiswa
       </p>
 
@@ -61,7 +61,7 @@ export default function LeaderboardPage() {
       ) : (
         <div className="w-full max-w-3xl flex flex-col gap-8">
           {/* Title Card */}
-          <div className="bg-[#201f1f] p-6 rounded-2xl shadow-[inset_0_2px_2px_rgba(255,255,255,0.06),0_10px_0_#090909,0_20px_30px_rgba(0,0,0,0.85)] text-center">
+          <div className="bg-[#201f1f] p-4 sm:p-6 rounded-2xl shadow-[inset_0_2px_2px_rgba(255,255,255,0.06),0_10px_0_#090909,0_20px_30px_rgba(0,0,0,0.85)] text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
               <ClayTitle text="PRINSIP UTAMA" size="sm" />
             </div>
@@ -84,7 +84,7 @@ export default function LeaderboardPage() {
             <button
               type="button"
               onClick={fetchLeaderboard}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#201f1f] text-[#FFF8E8] font-['Bricolage_Grotesque'] font-bold text-sm uppercase
+              className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-4 sm:px-8 py-4 rounded-full bg-[#201f1f] text-[#FFF8E8] font-['Bricolage_Grotesque'] font-bold text-sm uppercase
                 shadow-[inset_0_2px_2px_rgba(255,255,255,0.08),0_5px_0_#0c0c0c,0_10px_16px_rgba(0,0,0,0.7)]
                 hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0_1px_0_#0c0c0c]
                 transition-all"

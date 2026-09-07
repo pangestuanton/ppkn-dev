@@ -24,7 +24,7 @@ export default function QuestionNavigator({
   const answeredCount = Object.keys(answers).length;
 
   return (
-    <div className="w-full bg-[#1c1b1b] p-4 rounded-2xl shadow-[inset_0_2px_4px_rgba(0,0,0,0.7),0_8px_0_#090909] flex flex-col md:flex-row items-center justify-between gap-4">
+    <div className="w-full bg-[#1c1b1b] p-4 rounded-2xl shadow-[inset_0_2px_4px_rgba(0,0,0,0.7),0_8px_0_#090909] flex flex-col lg:flex-row items-center justify-between gap-4">
       {/* Label */}
       <div className="flex items-center gap-2">
         <svg className="w-4 h-4 text-[#999079]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -36,7 +36,7 @@ export default function QuestionNavigator({
       </div>
 
       {/* Beads */}
-      <div className="flex items-center flex-wrap justify-center gap-2 sm:gap-3">
+      <div className="min-w-0 flex items-center flex-wrap justify-center gap-2 sm:gap-3">
         {Array.from({ length: totalQuestions }).map((_, index) => {
           const qId = questionIds[index];
           const isAnswered = qId in answers;
@@ -49,7 +49,7 @@ export default function QuestionNavigator({
                 key={index}
                 type="button"
                 onClick={() => onNavigate(index)}
-                className="w-10 h-10 rounded-full bg-[#d4e3ff] text-[#00315f] font-['Bricolage_Grotesque'] font-bold text-sm flex items-center justify-center ring-2 ring-[#eff3ff] -translate-y-0.5"
+                className="w-11 h-11 shrink-0 rounded-full bg-[#d4e3ff] text-[#00315f] font-['Bricolage_Grotesque'] font-bold text-sm flex items-center justify-center ring-2 ring-[#eff3ff] -translate-y-0.5"
                 style={{
                   boxShadow: "inset 0 2px 2px #ffffff, 0 4px 0 #004786, 0 0 12px rgba(166,200,255,0.4)",
                 }}
@@ -72,7 +72,7 @@ export default function QuestionNavigator({
                 key={index}
                 type="button"
                 onClick={() => onNavigate(index)}
-                className="w-8 h-8 rounded-full font-['Bricolage_Grotesque'] font-bold text-xs flex items-center justify-center hover:scale-105 transition-transform"
+                className="w-11 h-11 shrink-0 rounded-full font-['Bricolage_Grotesque'] font-bold text-xs flex items-center justify-center hover:scale-105 transition-transform"
                 style={{
                   backgroundColor: c.bg,
                   color: c.text,
@@ -90,7 +90,7 @@ export default function QuestionNavigator({
               key={index}
               type="button"
               onClick={() => onNavigate(index)}
-              className="w-8 h-8 rounded-full bg-[#353534] text-[#d1c6ac] font-['Bricolage_Grotesque'] font-bold text-xs flex items-center justify-center shadow-[inset_0_2px_3px_rgba(0,0,0,0.8),0_2px_0_#000000] hover:text-[#FFD22A] transition-colors"
+              className="w-11 h-11 shrink-0 rounded-full bg-[#353534] text-[#d1c6ac] font-['Bricolage_Grotesque'] font-bold text-xs flex items-center justify-center shadow-[inset_0_2px_3px_rgba(0,0,0,0.8),0_2px_0_#000000] hover:text-[#FFD22A] transition-colors"
               title={`Soal ${index + 1}`}
             >
               {displayNum}

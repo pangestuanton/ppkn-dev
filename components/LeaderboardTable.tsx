@@ -34,7 +34,7 @@ export default function LeaderboardTable({ entries }: LeaderboardTableProps) {
         {entries.map((entry) => (
           <div
             key={`${entry.rank}-${entry.name}`}
-            className="flex items-center gap-4 bg-[#201f1f] px-5 py-4 rounded-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_4px_0_#0c0c0c,0_8px_12px_rgba(0,0,0,0.5)]"
+            className="grid grid-cols-[auto_minmax(0,1fr)] sm:flex items-center gap-x-3 gap-y-2 sm:gap-4 bg-[#201f1f] px-3 sm:px-5 py-4 rounded-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_4px_0_#0c0c0c,0_8px_12px_rgba(0,0,0,0.5)]"
           >
             {/* Rank Number */}
             <div
@@ -65,7 +65,7 @@ export default function LeaderboardTable({ entries }: LeaderboardTableProps) {
 
             {/* Name & Time */}
             <div className="flex-1 min-w-0">
-              <p className="font-['Quicksand'] font-bold text-base text-[#FFF8E8] truncate">
+              <p className="font-['Quicksand'] font-bold text-sm sm:text-base text-[#FFF8E8]">
                 {entry.name}
               </p>
               <p className="font-['Quicksand'] font-medium text-xs text-[#999079]">
@@ -74,7 +74,7 @@ export default function LeaderboardTable({ entries }: LeaderboardTableProps) {
             </div>
 
             {/* Score Bar */}
-            <div className="w-24 sm:w-32 flex items-center gap-2">
+            <div className="col-start-2 w-full sm:w-32 shrink-0 flex items-center gap-2">
               <div className="flex-1 h-2 rounded-full bg-[#353534] overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-500"

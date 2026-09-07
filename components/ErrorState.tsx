@@ -13,7 +13,7 @@ export default function ErrorState({
   onRetry,
 }: ErrorStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center gap-6 py-16">
+    <div className="w-full min-w-0 flex flex-col items-center justify-center gap-6 py-16">
       {/* Error Icon */}
       <div
         className="w-16 h-16 rounded-full bg-[#FF4A3D] flex items-center justify-center"
@@ -35,7 +35,7 @@ export default function ErrorState({
         <button
           type="button"
           onClick={onRetry}
-          className="px-8 py-3 rounded-full bg-[#201f1f] text-[#FFF8E8] font-['Bricolage_Grotesque'] font-bold text-sm uppercase
+          className="w-full sm:w-auto min-h-12 px-8 py-3 rounded-full bg-[#201f1f] text-[#FFF8E8] font-['Bricolage_Grotesque'] font-bold text-sm uppercase
             shadow-[inset_0_2px_2px_rgba(255,255,255,0.08),0_5px_0_#0c0c0c]
             hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0_1px_0_#0c0c0c]
             transition-all"
