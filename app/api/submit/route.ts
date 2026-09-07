@@ -30,9 +30,14 @@ export async function POST(request: NextRequest) {
 
     const answerKey = getAnswerKey();
     const answerKeyIds = Object.keys(answerKey).map(Number);
+    const submittedIds = Object.keys(body.answers).map(Number);
+
+    if (submittedIds.length !== 10 || submittedIds.some((id) => !answerKeyIds.includes(id))) {
+      return NextResponse.json({ error: "Paket soal tidak valid" }, { status: 400 });
+    }
 
     // Verify all questions are answered
-    for (const id of answerKeyIds) {
+    for (const id of submittedIds) {
       if (!(id in body.answers)) {
         return NextResponse.json(
           { error: `Soal ${id} belum dijawab` },
@@ -42,10 +47,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Calculate score server-side
-    const { correct, wrong, total, score } = calculateScore(
-      body.answers,
-      answerKey
+    const selectedAnswerKey = Object.fromEntries(
+      submittedIds.map((id) => [id, answerKey[id]])
     );
+    const { correct, wrong, total, score } = calculateScore(body.answers, selectedAnswerKey);
 
     // Get current timestamp
     const now = new Date();
