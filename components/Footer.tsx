@@ -20,7 +20,6 @@ export default function Footer() {
           <span className="font-['Quicksand'] font-bold text-xs text-[#999079] uppercase">
             {siteConfig.module.toUpperCase()}
           </span>
-          <span>Animasi 01 // 12 FPS</span>
         </div>
       </div>
     </footer>
