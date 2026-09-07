@@ -93,10 +93,12 @@ export async function getLeaderboardData(): Promise<
   }
 
   // Skip header row (index 0)
-  return rows.slice(1).map((row) => ({
-    name: String(row[1] || ""),
-    correct: Number(row[2] || 0),
-    score: Number(row[4] || 0),
-    submittedAt: String(row[5] || ""),
-  }));
+  return rows.slice(1)
+    .filter((row) => String(row[1] || "").trim().length > 0)
+    .map((row) => ({
+      name: String(row[1] || ""),
+      correct: Number(row[2] || 0),
+      score: Number(row[4] || 0),
+      submittedAt: String(row[5] || ""),
+    }));
 }
