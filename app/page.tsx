@@ -6,6 +6,7 @@ import ClayTitle from "@/components/ClayTitle";
 import ClayBadge from "@/components/ClayBadge";
 import { siteConfig } from "@/config/site";
 import { BookOpen, CheckSquare, Award } from "lucide-react";
+import MusicPlayer from "@/components/MusicPlayer";
 
 export default function LandingPage() {
   const [name, setName] = useState("");
@@ -88,6 +89,7 @@ export default function LandingPage() {
         </div>
 
       </div>
+      <div className="relative z-10 mb-2"><MusicPlayer track="home" /></div>
 
       {/* Clay Title */}
       <div className="w-full max-w-5xl flex flex-col items-center text-center relative z-10 px-2">
