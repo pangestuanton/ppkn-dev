@@ -41,8 +41,11 @@ export default function QuestionCard({
         </div>
 
         {/* Question Text */}
-        <h2 className="font-['Chunky'] font-extrabold text-xl sm:text-2xl lg:text-4xl text-[#FFD22A] leading-tight tracking-tight">
-          {question.question}
+        <h2 className="font-arimo font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD22A] leading-tight tracking-tight">
+          {Array.from(question.question).map((character, index) => {
+            const isUppercase = character !== character.toLowerCase() && character === character.toUpperCase();
+            return <span key={`${character}-${index}`} className={isUppercase ? "font-joshico" : "font-arimo"}>{character}</span>;
+          })}
         </h2>
 
         {/* Hint */}
