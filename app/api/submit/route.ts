@@ -55,6 +55,7 @@ export async function POST(request: NextRequest) {
     // Get current timestamp
     const now = new Date();
     const submittedAt = now.toLocaleTimeString("id-ID", {
+      timeZone: "Asia/Jakarta",
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
