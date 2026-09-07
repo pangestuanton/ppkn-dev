@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Beranda", path: "/", dotColor: "#edc212" },
   { label: "Materi", path: "/materi", dotColor: "#43dfa6" },
   { label: "Petunjuk", path: "/petunjuk", dotColor: "#ffb597" },
-  { label: "Leaderboard", path: "/leaderboard", dotColor: "#a6c8ff", locked: true },
+  { label: "Leaderboard", path: "/leaderboard", dotColor: "#a6c8ff", locked: !siteConfig.features.leaderboardEnabled },
 ];
 
 export default function Navbar() {
