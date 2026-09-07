@@ -16,9 +16,23 @@ export default function MusicPlayer({ track }: MusicPlayerProps) {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    audio.play().catch(() => {
-      // Autoplay bersuara dapat diblokir oleh kebijakan browser.
-    });
+    const startAudio = () => {
+      audio.play().catch(() => undefined);
+      window.removeEventListener("pointerdown", startAudio);
+      window.removeEventListener("keydown", startAudio);
+      window.removeEventListener("touchstart", startAudio);
+    };
+
+    // Coba langsung; bila diblokir, interaksi pertama pengguna akan membuka audio.
+    startAudio();
+    window.addEventListener("pointerdown", startAudio, { once: true });
+    window.addEventListener("keydown", startAudio, { once: true });
+    window.addEventListener("touchstart", startAudio, { once: true });
+    return () => {
+      window.removeEventListener("pointerdown", startAudio);
+      window.removeEventListener("keydown", startAudio);
+      window.removeEventListener("touchstart", startAudio);
+    };
   }, [current.file]);
 
   return (
