@@ -28,7 +28,7 @@ export default function Navbar() {
             hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0_1px_0px_#a07400]
             transition-transform select-none"
         >
-          {siteConfig.title.split(" ")[0]} QUIZ
+          {siteConfig.title.split(" ")[0]} KUIS
         </Link>
 
         {/* Navigation Pills */}

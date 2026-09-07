@@ -50,7 +50,7 @@ export default function LeaderboardPage() {
 
       {/* Subtitle */}
       <p className="font-['Quicksand'] font-semibold text-sm sm:text-base text-[#d1c6ac] text-center">
-        Moral Development Quiz • Peringkat Nilai Mahasiswa
+        Kuis Perkembangan Moral • Peringkat Nilai Mahasiswa
       </p>
 
       {/* Content */}
