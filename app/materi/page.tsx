@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ClayTitle from "@/components/ClayTitle";
+import MixedFontText from "@/components/MixedFontText";
 
 const lecturers = ["Dr. Yunisca Nurmalisa, S.Pd., M.Pd.", "Lisa Retno Sari, M.Pd.", "Rima Yuni Saputri, M.Pd."];
 const members = [
@@ -38,17 +39,17 @@ function InfoList({ items }: { items: string[] }) {
 }
 
 function Cards({ items }: { items: string[][] }) {
-  return <div className="mt-4 grid gap-3 sm:grid-cols-2">{items.map(([title, text]) => <div key={title} className="rounded-2xl bg-[#1c1b1b] p-4 shadow-[inset_0_2px_1px_rgba(255,255,255,.06),0_5px_0_#090909]"><h3 className="font-['Chunky'] text-lg text-[#FFD22A]">{title}</h3><p className="mt-1 font-['Quicksand'] text-sm font-semibold leading-relaxed text-[#d1c6ac]">{text}</p></div>)}</div>;
+  return <div className="mt-4 grid gap-3 sm:grid-cols-2">{items.map(([title, text]) => <div key={title} className="rounded-2xl bg-[#1c1b1b] p-4 shadow-[inset_0_2px_1px_rgba(255,255,255,.06),0_5px_0_#090909]"><h3 className="font-arimo text-lg font-bold text-[#FFD22A]"><MixedFontText text={title} /></h3><p className="mt-1 font-['Quicksand'] text-sm font-semibold leading-relaxed text-[#d1c6ac]">{text}</p></div>)}</div>;
 }
 
 export default function MateriPage() {
   return (
     <div className="relative mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-8 sm:gap-8 sm:px-6 lg:px-20">
-      <header className="relative z-10 text-center"><p className="font-['Quicksand'] text-xs font-bold uppercase tracking-widest text-[#E6C750]">DASAR KONSEP PENDIDIKAN MORAL</p><div className="mt-4"><h1 className="font-arimo text-3xl font-bold text-[#FFD22A] sm:text-5xl">{Array.from("MORAL DEVELOPMENT").map((character, index) => <span key={`${character}-${index}`} className={character !== character.toLowerCase() && character === character.toUpperCase() ? "font-joshico" : "font-arimo"}>{character}</span>)}</h1></div><p className="mt-4 font-['Quicksand'] text-sm font-semibold text-[#d1c6ac] sm:text-base">Pendekatan-Pendekatan Moral</p></header>
+      <header className="relative z-10 text-center"><p className="font-['Quicksand'] text-xs font-bold uppercase tracking-widest text-[#E6C750]">DASAR KONSEP PENDIDIKAN MORAL</p><div className="mt-4"><ClayTitle text="MORAL DEVELOPMENT" size="md" /></div><p className="mt-4 font-['Quicksand'] text-sm font-semibold text-[#d1c6ac] sm:text-base">Pendekatan-Pendekatan Moral</p></header>
 
       <section className="grid gap-4 sm:grid-cols-2">
-        <div className="rounded-2xl bg-[#201f1f] p-5 shadow-[inset_0_2px_2px_rgba(255,255,255,.06),0_8px_0_#090909]"><h2 className="font-['Chunky'] text-xl text-[#54CED7]">Dosen Pengampu</h2><InfoList items={lecturers} /></div>
-        <div className="rounded-2xl bg-[#201f1f] p-5 shadow-[inset_0_2px_2px_rgba(255,255,255,.06),0_8px_0_#090909]"><h2 className="font-['Chunky'] text-xl text-[#43DFA6]">Kelompok 6</h2><InfoList items={members} /></div>
+        <div className="rounded-2xl bg-[#201f1f] p-5 shadow-[inset_0_2px_2px_rgba(255,255,255,.06),0_8px_0_#090909]"><h2 className="font-arimo text-xl font-bold text-[#54CED7]"><MixedFontText text="Dosen Pengampu" /></h2><InfoList items={lecturers} /></div>
+        <div className="rounded-2xl bg-[#201f1f] p-5 shadow-[inset_0_2px_2px_rgba(255,255,255,.06),0_8px_0_#090909]"><h2 className="font-arimo text-xl font-bold text-[#43DFA6]"><MixedFontText text="Nama Anggota Kelompok 6" /></h2><InfoList items={members} /></div>
       </section>
 
       <article className="space-y-6 rounded-3xl bg-[#201f1f] p-4 sm:p-6 lg:p-8 shadow-[inset_0_2px_2px_rgba(255,255,255,.06),0_12px_0_#090909,0_22px_30px_rgba(0,0,0,.7)]">
