@@ -6,7 +6,6 @@ import ClayTitle from "@/components/ClayTitle";
 import ClayBadge from "@/components/ClayBadge";
 import { siteConfig } from "@/config/site";
 import { BookOpen, CheckSquare, Award } from "lucide-react";
-import MaterialQr from "@/components/MaterialQr";
 
 export default function LandingPage() {
   const [name, setName] = useState("");
@@ -222,10 +221,6 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Materi QR ditempatkan paling bawah agar fokus tetap pada kuis */}
-        <div className="w-full max-w-xl mt-6">
-          <MaterialQr />
-        </div>
       </div>
     </div>
   );
