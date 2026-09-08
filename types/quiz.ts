@@ -33,6 +33,16 @@ export type SubmitPayload = {
   answers: QuizAnswers;
 };
 
+export type QuestionReview = {
+  questionId: number;
+  question: string;
+  selectedAnswer: string;
+  correctAnswer: string;
+  selectedOption: string;
+  correctOption: string;
+  isCorrect: boolean;
+};
+
 /** Result returned from the backend after scoring */
 export type QuizResult = {
   name: string;
@@ -40,6 +50,7 @@ export type QuizResult = {
   wrong: number;
   total: number;
   score: number;
+  review?: QuestionReview[];
 };
 
 /** Single leaderboard entry */

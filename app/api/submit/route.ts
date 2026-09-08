@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAnswerKey, QUIZ_QUESTION_COUNT } from "@/data/questions";
+import { getAnswerKey, getQuestion, QUIZ_QUESTION_COUNT } from "@/data/questions";
 import { calculateScore } from "@/lib/calculateScore";
 import { appendResult } from "@/lib/googleSheets";
 import type { SubmitPayload, QuizResult } from "@/types/quiz";
@@ -56,6 +56,28 @@ export async function POST(request: NextRequest) {
     );
     const { correct, wrong, total, score } = calculateScore(body.answers, selectedAnswerKey);
 
+    const review = submittedIds
+      .sort((a, b) => a - b)
+      .map((questionId) => {
+        const question = getQuestion(questionId);
+        const selectedOption = body.answers[questionId];
+        const correctOption = answerKey[questionId];
+
+        return {
+          questionId,
+          question: question?.question ?? `Soal ${questionId}`,
+          selectedOption,
+          correctOption,
+          selectedAnswer:
+            question?.options.find((option) => option.id === selectedOption)?.text ??
+            "Jawaban tidak tersedia",
+          correctAnswer:
+            question?.options.find((option) => option.id === correctOption)?.text ??
+            "Jawaban tidak tersedia",
+          isCorrect: selectedOption === correctOption,
+        };
+      });
+
     // Get current timestamp
     const now = new Date();
     const submittedAt = now.toLocaleTimeString("id-ID", {
@@ -88,6 +110,7 @@ export async function POST(request: NextRequest) {
       wrong,
       total,
       score,
+      review,
     };
 
     return NextResponse.json(result);

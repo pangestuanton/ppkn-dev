@@ -6,6 +6,7 @@ import type { QuizResult } from "@/types/quiz";
 import ClayTitle from "@/components/ClayTitle";
 import ResultCard from "@/components/ResultCard";
 import ScoreStats from "@/components/ScoreStats";
+import QuestionReview from "@/components/QuestionReview";
 import LoadingState from "@/components/LoadingState";
 
 export default function ResultPage() {
@@ -69,6 +70,8 @@ export default function ResultPage() {
       <div className="w-full max-w-3xl">
         <ScoreStats result={result} />
       </div>
+
+      {result.review && result.review.length > 0 && <QuestionReview review={result.review} />}
 
       {/* CTA Buttons */}
       <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-4 mb-8">

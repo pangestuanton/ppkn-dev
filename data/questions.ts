@@ -268,3 +268,7 @@ export function getRandomPublicQuestions(
 export function getAnswerKey(): Record<number, string> {
   return Object.fromEntries(questions.map((q) => [q.id, q.correctAnswer]));
 }
+
+export function getQuestion(questionId: number): InternalQuestion | undefined {
+  return questions.find((question) => question.id === questionId);
+}
