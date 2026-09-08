@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAnswerKey } from "@/data/questions";
+import { getAnswerKey, QUIZ_QUESTION_COUNT } from "@/data/questions";
 import { calculateScore } from "@/lib/calculateScore";
 import { appendResult } from "@/lib/googleSheets";
 import type { SubmitPayload, QuizResult } from "@/types/quiz";
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
 
     if (
       submittedIds.length === 0 ||
-      (submittedIds.length !== answerKeyIds.length && submittedIds.length !== 10) ||
+      submittedIds.length !== QUIZ_QUESTION_COUNT ||
       submittedIds.some((id) => !answerKeyIds.includes(id))
     ) {
       return NextResponse.json({ error: "Paket soal tidak valid" }, { status: 400 });

@@ -1,5 +1,8 @@
 import "server-only";
+import { randomInt } from "node:crypto";
 import type { InternalQuestion, PublicQuestion } from "@/types/quiz";
+
+export const QUIZ_QUESTION_COUNT = 10;
 
 export const questions: InternalQuestion[] = [
   {
@@ -246,6 +249,20 @@ export const questions: InternalQuestion[] = [
 
 export function getPublicQuestions(): PublicQuestion[] {
   return questions.map(({ correctAnswer, ...publicFields }) => publicFields);
+}
+
+export function getRandomPublicQuestions(
+  count = QUIZ_QUESTION_COUNT
+): PublicQuestion[] {
+  const pool = getPublicQuestions();
+  const selected: PublicQuestion[] = [];
+
+  while (selected.length < count && pool.length > 0) {
+    const index = randomInt(pool.length);
+    selected.push(pool.splice(index, 1)[0]);
+  }
+
+  return selected;
 }
 
 export function getAnswerKey(): Record<number, string> {

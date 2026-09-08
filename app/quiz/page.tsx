@@ -38,7 +38,7 @@ export default function QuizPage() {
   useEffect(() => {
     async function loadQuestions() {
       try {
-        const res = await fetch("/api/questions");
+        const res = await fetch("/api/questions", { cache: "no-store" });
         if (!res.ok) throw new Error("Gagal memuat soal");
         const data = await res.json();
         setQuestions(data.questions);
