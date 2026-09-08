@@ -160,7 +160,7 @@ export default function QuizPage() {
               MORAL DEVELOPMENT
             </span>
             <span className="hidden lg:inline-flex items-center text-[#999079] font-['Quicksand'] font-semibold text-xs tracking-widest uppercase">
-              • Teori Lawrence Kohlberg
+              • Konsep, Teori & Penerapan PPKn
             </span>
           </div>
           <div className="flex items-baseline shrink-0 gap-1 bg-[#1c1b1b] px-3 sm:px-6 py-2 rounded-full shadow-[inset_0_3px_5px_rgba(0,0,0,0.8),0_4px_0_#0e0e0e]">

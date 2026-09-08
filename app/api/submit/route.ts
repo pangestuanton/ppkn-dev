@@ -32,7 +32,11 @@ export async function POST(request: NextRequest) {
     const answerKeyIds = Object.keys(answerKey).map(Number);
     const submittedIds = Object.keys(body.answers).map(Number);
 
-    if (submittedIds.length !== 10 || submittedIds.some((id) => !answerKeyIds.includes(id))) {
+    if (
+      submittedIds.length === 0 ||
+      (submittedIds.length !== answerKeyIds.length && submittedIds.length !== 10) ||
+      submittedIds.some((id) => !answerKeyIds.includes(id))
+    ) {
       return NextResponse.json({ error: "Paket soal tidak valid" }, { status: 400 });
     }
 

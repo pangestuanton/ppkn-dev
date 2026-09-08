@@ -49,11 +49,11 @@ export default function LandingPage() {
             ?
           </span>
           <span className="font-['Bricolage_Grotesque'] font-bold text-sm text-[#FFF8E8] tracking-tight">
-            Tahap Kohlberg
+            Piaget & Kohlberg
           </span>
         </div>
         <span className="font-['Quicksand'] font-semibold text-xs text-[#999079]">
-          Tingkat 1 - 3 Moralitas
+          Teori Perkembangan Moral
         </span>
       </div>
 
@@ -84,10 +84,9 @@ export default function LandingPage() {
             •
           </span>
           <span className="font-['Quicksand'] font-semibold text-xs text-[#d1c6ac] hidden sm:inline">
-            Modul Dilema Moral Heinz
+            Dasar Konsep Pendidikan Moral • Kelompok 6
           </span>
         </div>
-
       </div>
       <div className="relative z-10 mb-2"><MusicPlayer track="home" /></div>
 
@@ -204,21 +203,23 @@ export default function LandingPage() {
         </div>
 
         {/* Scenario Preview Card */}
-        <div className="w-full max-w-xl mt-10 bg-[#1c1b1b] rounded-3xl p-4 text-left shadow-[inset_0_2px_1px_rgba(255,255,255,0.08),0_10px_0px_#090909,0_20px_30px_rgba(0,0,0,0.85)] relative">
+        <div className="w-full max-w-xl mt-10 bg-[#1c1b1b] rounded-3xl p-5 text-left shadow-[inset_0_2px_1px_rgba(255,255,255,0.08),0_10px_0px_#090909,0_20px_30px_rgba(0,0,0,0.85)] relative">
           <div className="absolute -top-3.5 right-6 px-3 py-0.5 rounded-full bg-[#BC68DF] text-[#FFF8E8] font-['Quicksand'] font-bold text-xs shadow-[0_3px_0px_#6A2685]">
-            Dilema Klasik
+            Infografis Pemantik
           </div>
           <div className="flex items-start gap-3">
             <span className="w-8 h-8 rounded-full bg-[#FF742F] text-white flex items-center justify-center shrink-0 font-['Bricolage_Grotesque'] font-bold text-sm shadow-[0_2px_0px_#A73900]">
-              01
+              💡
             </span>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
               <span className="font-['Quicksand'] font-bold text-sm text-[#FFD22A]">
-                Dilema Heinz: Bolehkah mencuri obat demi nyawa istri?
+                “Kalau kamu di posisi ini, apa yang akan kamu lakukan?”
               </span>
-              <p className="font-['Quicksand'] font-semibold text-xs text-[#d1c6ac]">
-                Kohlberg mengukur bukan jawaban &quot;ya&quot; atau &quot;tidak&quot;,
-                melainkan alasan penalaran moral di balik keputusanmu.
+              <p className="font-['Quicksand'] font-semibold text-xs text-[#d1c6ac] leading-relaxed">
+                <strong className="text-[#FFF8E8]">Situasi:</strong> Kamu melihat temanmu menyontek ketika ujian. Guru tidak mengetahuinya. Jika kamu melaporkan, temanmu mungkin mendapat masalah. Namun, jika kamu diam, kamu membiarkan ketidakjujuran.
+              </p>
+              <p className="font-['Quicksand'] font-bold text-xs text-[#43DFA6] italic mt-1">
+                “Bukan hanya apa yang kita lakukan, tetapi juga mengapa kita memilih untuk melakukannya.”
               </p>
             </div>
           </div>
