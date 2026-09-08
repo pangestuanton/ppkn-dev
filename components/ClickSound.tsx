@@ -2,33 +2,16 @@
 
 import { useEffect } from "react";
 
-let audioContext: AudioContext | null = null;
+let clickAudio: HTMLAudioElement | null = null;
 
 function playClickSound() {
-  if (!audioContext) {
-    audioContext = new window.AudioContext();
+  if (!clickAudio) {
+    clickAudio = new Audio("/music/roblox-click-sound.mp3");
+    clickAudio.preload = "auto";
   }
 
-  const context = audioContext;
-  const oscillator = context.createOscillator();
-  const gain = context.createGain();
-  const now = context.currentTime;
-
-  oscillator.type = "sine";
-  oscillator.frequency.setValueAtTime(620, now);
-  oscillator.frequency.exponentialRampToValueAtTime(420, now + 0.06);
-
-  gain.gain.setValueAtTime(0.0001, now);
-  gain.gain.exponentialRampToValueAtTime(0.08, now + 0.005);
-  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.07);
-
-  oscillator.connect(gain);
-  gain.connect(context.destination);
-  oscillator.start(now);
-  oscillator.stop(now + 0.075);
-
-  // Resuming here is safe because this function only runs from a user click.
-  void context.resume();
+  clickAudio.currentTime = 0;
+  void clickAudio.play().catch(() => undefined);
 }
 
 export default function ClickSound() {
