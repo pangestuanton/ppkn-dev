@@ -1,7 +1,7 @@
 export const siteConfig = {
   title: "Kuis Interaktif PPKn",
   topic: "Moral Development",
-  subtitle: "Pendekatan-Pendekatan Moral: Moral Development",
+  subtitle: "Pendekatan-Pendekatan Moral",
   program: "Pendidikan Pancasila dan Kewarganegaraan",
   module: "Modul Moral Development",
   group: "Kelompok 6",
