@@ -60,21 +60,22 @@ export async function POST(request: NextRequest) {
       .sort((a, b) => a - b)
       .map((questionId) => {
         const question = getQuestion(questionId);
-        const selectedOption = body.answers[questionId];
+        const rawOption = body.answers[questionId];
+        const selectedOption = typeof rawOption === "string" ? rawOption : "";
         const correctOption = answerKey[questionId];
 
         return {
           questionId,
           question: question?.question ?? `Soal ${questionId}`,
-          selectedOption,
+          selectedOption: selectedOption || "-",
           correctOption,
-          selectedAnswer:
-            question?.options.find((option) => option.id === selectedOption)?.text ??
-            "Jawaban tidak tersedia",
+          selectedAnswer: selectedOption
+            ? (question?.options.find((option) => option.id === selectedOption)?.text ?? "Jawaban tidak tersedia")
+            : "Dilewati (Tidak dijawab)",
           correctAnswer:
             question?.options.find((option) => option.id === correctOption)?.text ??
             "Jawaban tidak tersedia",
-          isCorrect: selectedOption === correctOption,
+          isCorrect: Boolean(selectedOption && selectedOption === correctOption),
         };
       });
 

@@ -13,7 +13,7 @@ type SubmitModalProps = {
 
 /**
  * Confirmation modal before submitting answers.
- * Matches the Stitch quiz page modal design.
+ * Shows answered and skipped breakdown, allows submission once all questions have been completed.
  */
 export default function SubmitModal({
   isOpen,
@@ -37,7 +37,7 @@ export default function SubmitModal({
     };
   }, [isOpen]);
 
-  const allAnswered = answeredCount === totalQuestions;
+  const skippedCount = Math.max(0, totalQuestions - answeredCount);
 
   return (
     <dialog
@@ -71,33 +71,30 @@ export default function SubmitModal({
         </span>
 
         <h3 id="submit-title" className="font-['Chunky'] font-extrabold text-2xl sm:text-3xl text-[#FFD22A] tracking-tight mb-2">
-          SUDAH YAKIN?
+          SELESAIKAN KUIS?
         </h3>
 
         <p id="submit-description" className="font-['Quicksand'] font-medium text-sm sm:text-base text-[#d1c6ac] max-w-sm mb-4 sm:mb-6">
-          Pastikan semua jawaban telah dipilih dengan cermat sebelum menyelesaikan sesi kuis moral ini.
+          Kamu telah menyelesaikan seluruh rangkaian butir soal. Kirim sekarang untuk melihat nilai dan pembahasan.
         </p>
 
-        {/* Progress Badge */}
-        <div className="max-w-full inline-flex items-center gap-2 px-4 sm:px-6 py-1.5 rounded-full bg-[#353534] shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)] mb-4 sm:mb-8">
-          <span
-            className="w-2.5 h-2.5 rounded-full"
-            style={{
-              backgroundColor: allAnswered ? "#43DFA6" : "#ffb597",
-              boxShadow: `0 0 8px ${allAnswered ? "#43DFA6" : "#ffb597"}`,
-            }}
-          />
-          <span className="font-['Quicksand'] font-bold text-sm text-[#FFD22A]">
-            {answeredCount} / {totalQuestions} Terjawab
-          </span>
+        {/* Progress Breakdown Badge */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#353534] shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#43DFA6] shadow-[0_0_8px_#43DFA6]" />
+            <span className="font-['Quicksand'] font-bold text-sm text-[#FFD22A]">
+              {answeredCount} / {totalQuestions} Terjawab
+            </span>
+          </div>
+          {skippedCount > 0 && (
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#353534] shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#ffb597] shadow-[0_0_8px_#ffb597]" />
+              <span className="font-['Quicksand'] font-bold text-sm text-[#ffb597]">
+                {skippedCount} Dilewati
+              </span>
+            </div>
+          )}
         </div>
-
-        {/* Warning if not all answered */}
-        {!allAnswered && (
-          <p className="font-['Quicksand'] font-semibold text-sm text-[#FF4A3D] mb-4">
-            ⚠ Pastikan semua soal telah dijawab sebelum mengirim.
-          </p>
-        )}
 
         {/* Action Buttons */}
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -110,18 +107,18 @@ export default function SubmitModal({
               hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0_1px_0_#0c0c0c]
               transition-all disabled:opacity-50"
           >
-            KEMBALI
+            BATAL
           </button>
           <button
             type="button"
             onClick={onSubmit}
-            disabled={!allAnswered || isSubmitting}
+            disabled={isSubmitting}
             className="w-full py-4 rounded-full bg-[#FFD22A] text-[#3c2f00] font-['Bricolage_Grotesque'] font-bold text-sm uppercase
               shadow-[inset_0_3px_2px_rgba(255,255,255,0.6),0_6px_0_#a07400,0_12px_20px_rgba(0,0,0,0.6)]
               hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0_2px_0_#a07400]
               transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isSubmitting ? "MENGIRIM..." : "KIRIM JAWABAN"}
+            {isSubmitting ? "MENGIRIM..." : "KIRIM SEKARANG"}
           </button>
         </div>
       </div>
