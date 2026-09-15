@@ -4,29 +4,29 @@ import ClayTitle from "@/components/ClayTitle";
 const instructions = [
   {
     number: "01",
-    title: "Masukkan nama",
-    text: "Tulis nama lengkap pada halaman beranda, lalu tekan tombol MULAI KUIS.",
+    title: "Masukkan Nama Lengkap",
+    text: "Tulis nama lengkap Anda di halaman beranda, lalu tekan tombol MULAI KUIS untuk memulai sesi.",
     color: "#43DFA6",
     shadow: "#1E845F",
   },
   {
     number: "02",
-    title: "Baca soal dengan teliti",
-    text: "Pahami setiap dilema moral dan pilih satu jawaban yang paling sesuai dengan alasanmu.",
+    title: "Durasi 30 Detik per Soal",
+    text: "Setiap butir soal memiliki hitung mundur waktu 30 detik. Waktu otomatis direset setiap kali berpindah soal.",
     color: "#54CED7",
     shadow: "#238691",
   },
   {
     number: "03",
-    title: "Gunakan navigasi soal",
-    text: "Lingkaran nomor soal menunjukkan progres. Kamu dapat berpindah dan mengubah jawaban kapan saja.",
+    title: "Navigasi Satu Arah & Fitur Skip",
+    text: "Pengerjaan bersifat satu arah (tidak bisa kembali ke soal sebelumnya). Anda dapat menekan SELANJUTNYA atau LEWATI SOAL sebelum 30 detik berakhir. Bila waktu habis, soal otomatis berlanjut.",
     color: "#FFD22A",
     shadow: "#A07400",
   },
   {
     number: "04",
-    title: "Kirim jawaban",
-    text: "Pastikan seluruh soal terisi. Pada soal terakhir, tekan KIRIM JAWABAN dan konfirmasi pengiriman.",
+    title: "Skor, Review & Peringkat",
+    text: "Kuis menyajikan 10 soal acak. Setelah soal terakhir selesai, skor, rincian pembahasan jawaban, serta papan peringkat (Leaderboard) akan langsung ditampilkan.",
     color: "#BC68DF",
     shadow: "#6A2685",
   },
@@ -40,7 +40,7 @@ export default function InstructionsPage() {
         <p className="font-['Quicksand'] text-xs font-bold uppercase tracking-widest text-[#E6C750]">MORAL DEVELOPMENT</p>
         <div className="mt-4"><ClayTitle text="PETUNJUK" size="md" /></div>
         <p className="mt-4 max-w-xl font-['Quicksand'] text-sm font-semibold leading-relaxed text-[#d1c6ac] sm:text-base">
-          Ikuti langkah sederhana berikut untuk menyelesaikan kuis perkembangan moral dengan nyaman.
+          Pahami ketentuan dan alur pengerjaan kuis perkembangan moral sebelum memulai tes.
         </p>
       </div>
 

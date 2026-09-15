@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import ClayTitle from "@/components/ClayTitle";
 import ClayBadge from "@/components/ClayBadge";
 import { siteConfig } from "@/config/site";
-import { BookOpen, CheckSquare, Award } from "lucide-react";
+import { BookOpen, Award, Timer } from "lucide-react";
 import MusicPlayer from "@/components/MusicPlayer";
 
 export default function LandingPage() {
@@ -183,9 +183,9 @@ export default function LandingPage() {
             rotation={-3}
           />
           <ClayBadge
-            icon={<CheckSquare className="w-5 h-5" />}
-            title={siteConfig.quizLabels.pilihanGanda}
-            subtitle="A • B • C • D"
+            icon={<Timer className="w-5 h-5" />}
+            title={siteConfig.quizLabels.durasi}
+            subtitle="Satu Arah • Bisa Di-skip"
             color="#54CED7"
             shadowColor="#238691"
             textColor="#003940"
