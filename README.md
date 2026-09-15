@@ -1,19 +1,36 @@
 # PPKn Interactive Quiz — Moral Development
 
-Aplikasi web kuis interaktif pembelajaran PPKn (Pendidikan Pancasila dan Kewarganegaraan) dengan tema **Pendekatan Pendidikan Moral: Moral Development (Lawrence Kohlberg)**.
+Aplikasi web kuis interaktif pembelajaran PPKn (Pendidikan Pancasila dan Kewarganegaraan) dengan tema **Pendekatan Pendidikan Moral: Moral Development (Lawrence Kohlberg & Jean Piaget)**.
 
-Dibangun dengan arsitektur **Next.js Monolith** berdasarkan spesifikasi desain **Google Stitch: Claymation / Stop-Motion Educational Presentation**.
+Dibangun dengan arsitektur **Next.js Monolith** berdasarkan spesifikasi desain visual **Google Stitch: Claymation / Stop-Motion Educational Presentation**.
 
 ---
 
-## 1. Fitur Utama
+## 1. Fitur Utama & Ketentuan Kuis Terbaru
 
-- **Estetika Claymation / Stop-Motion**: Tema visual tactile clay, matte textures, stop-motion buttons, rounded cards, warna-warni tanah liat play-dough di atas substrate gelap (`#090909`).
-- **Dynamic Quiz Engine**: Soal, pilihan jawaban, navigasi, progress bar, dan nomor soal dinamis (tidak ada data hardcoded).
-- **Server-Side Scoring & Security**: Evaluasi jawaban dan perhitungan nilai dilakukan sepenuhnya di server. Kunci jawaban dilindungi oleh modul `server-only` dan tidak pernah terekspos ke frontend / client bundle.
-- **Google Sheets Persistence**: Penyimpanan hasil pengerjaan kuis (Nama, Benar, Salah, Nilai, Waktu Submit) ke Google Sheets menggunakan Service Account API secara otomatis.
-- **Dynamic Leaderboard**: Peringkat nilai peserta yang di-fetch secara real-time dari Google Sheets dan diurutkan berdasarkan nilai tertinggi dan waktu submit tercepat.
-- **Mobile-First & Responsive**: Tampilan responsif untuk perangkat mobile maupun desktop, sesuai arahan Google Stitch.
+- **Paket 10 Soal Acak (Random Sampling)**: Setiap sesi pengerjaan kuis mengambil 10 butir soal secara acak dari total 20 bank soal studi kasus dilema moral PPKn, sehingga variasi soal selalu segar bagi peserta.
+- **Durasi 30 Detik per Soal**:
+  - Setiap butir soal dilengkapi dengan hitung mundur waktu 30 detik (`QuizTimer`).
+  - Timer otomatis direset menjadi 30 detik setiap kali berganti butir soal.
+  - Perubahan indikator visual dinamis: **Biru** (> 10 dtk), **Oranye peringatan** (6–10 dtk), dan **Merah kritis** (≤ 5 dtk dengan animasi denyut & putaran).
+  - Jika durasi 30 detik habis, sistem otomatis beralih ke soal berikutnya (atau otomatis mengirim jawaban jika pada soal terakhir).
+- **Navigasi Satu Arah (One-Way Progression)**:
+  - Peserta tidak dapat kembali ke butir soal sebelumnya (*no backward navigation*).
+  - Menjaga integritas dan objektivitas evaluasi pemahaman moral peserta.
+- **Fleksibilitas Lanjut & Lewati (Skip) di Bawah 30 Detik**:
+  - Peserta tidak wajib menunggu 30 detik penuh jika sudah selesai berpikir.
+  - Tombol **"SELANJUTNYA"** / **"KIRIM JAWABAN"**: Dapat langsung ditekan seketika setelah memilih opsi jawaban.
+  - Tombol **"LEWATI SOAL"**: Memungkinkan peserta melewati soal tanpa menjawab. Soal yang dilewati tercatat dan diberi nilai 0 secara adil.
+- **Review & Pembahasan Lengkap (Per-Question Review)**:
+  - Setelah kuis selesai, halaman hasil menampilkan rincian jawaban peserta, jawaban yang benar, serta status soal yang dilewati beserta pembahasannya.
+- **Estetika Visual Claymation / Stop-Motion**:
+  - Nuansa tactile clay, tombol stop-motion 3D yang empuk, rounded cards, palet warna tanah liat play-dough di atas latar substrate gelap (`#090909`).
+- **Server-Side Scoring & Security**:
+  - Evaluasi jawaban dan penghitungan skor dilakukan sepenuhnya di server via Next.js Route Handler.
+  - Kunci jawaban dilindungi oleh modul `server-only` (`data/questions.ts`) sehingga tidak pernah bocor ke client bundle.
+- **Google Sheets Persistence & Dynamic Leaderboard**:
+  - Menyimpan otomatis hasil pengerjaan kuis (Nama, Benar, Salah, Nilai, Waktu Submit WIB) ke Google Sheets via Service Account API.
+  - Papan peringkat nilai peserta yang diperbarui secara real-time.
 
 ---
 
@@ -21,41 +38,45 @@ Dibangun dengan arsitektur **Next.js Monolith** berdasarkan spesifikasi desain *
 
 - **Framework**: Next.js 15 (App Router)
 - **Frontend**: React 19, TypeScript
-- **Styling**: Tailwind CSS v4, Google Fonts (Bricolage Grotesque & Quicksand)
+- **Styling**: Tailwind CSS v4, Google Fonts (Bricolage Grotesque, Quicksand, Arimo)
 - **Icons**: Lucide React
 - **Backend**: Next.js Route Handlers (Node.js runtime)
 - **Database / Storage**: Google Sheets API (`googleapis`)
+- **Audio**: Web Audio API Sound Effects & Background Music Player
 - **Deployment**: Vercel Ready
 
 ---
 
-## 3. Arsitektur Monolith
-
-Frontend dan backend berada dalam **satu repository monolith**:
+## 3. Alur Sistem & Arsitektur Monolith
 
 ```text
 [ Browser / Client ]
       │
-      ├─ 1. Akses Landing Page & Input Nama (SessionStorage)
-      ├─ 2. Fetch Soal Dinamis (GET /api/questions - tanpa kunci jawaban)
-      ├─ 3. Pengerjaan Kuis (State management lokal, navigasi, review)
+      ├─ 1. Akses Beranda & Input Nama Peserta (SessionStorage)
+      ├─ 2. Fetch 10 Soal Acak (GET /api/questions - tanpa kunci jawaban)
+      ├─ 3. Pengerjaan Kuis:
+      │     ├─ Timer 30 detik hitung mundur per soal
+      │     ├─ Navigasi satu arah (tanpa tombol kembali)
+      │     ├─ Bisa klik "SELANJUTNYA" atau "LEWATI" di bawah 30 detik
+      │     └─ Auto-advance jika waktu 30 detik habis
       ├─ 4. Submit Jawaban (POST /api/submit)
       │
 [ Next.js Route Handler (Server) ]
       │
-      ├─ 5. Validasi input nama & kelengkapan jawaban
+      ├─ 5. Validasi nama & kelengkapan paket 10 soal
       ├─ 6. Ambil Kunci Jawaban (server-only module: data/questions.ts)
-      ├─ 7. Hitung Skor (Benar, Salah, Persentase 0–100)
-      ├─ 8. Generate Timestamp Server (WIB)
+      ├─ 7. Hitung Skor (Benar, Salah, Persentase 0–100, toleransi jawaban dilewati)
+      ├─ 8. Bangun Objek Pembahasan Jawaban (Review)
+      ├─ 9. Generate Timestamp Server (WIB)
       │
 [ Google Sheets API ]
       │
-      ├─ 9. Append row ke Spreadsheet "Nilai"
+      ├─ 10. Append data peserta ke baris Spreadsheet "Nilai"
       │
 [ Response ke Browser ]
       │
-      ├─ 10. Tampilkan Halaman Hasil (/result)
-      └─ 11. Buka Leaderboard (/leaderboard) -> GET /api/leaderboard
+      ├─ 11. Render Halaman Hasil (/result) dengan Skor & Pembahasan Lengkap
+      └─ 12. Papan Peringkat (/leaderboard) -> GET /api/leaderboard
 ```
 
 ---
@@ -65,50 +86,56 @@ Frontend dan backend berada dalam **satu repository monolith**:
 ```text
 kuis-ppkn/
 ├── app/
-│   ├── layout.tsx                # Root layout (Navbar, Footer, Fonts)
-│   ├── page.tsx                  # Landing Page (Input nama & start kuis)
+│   ├── layout.tsx                # Root layout (Navbar, Footer, Sound effect, Metadata)
+│   ├── page.tsx                  # Landing Page (Input nama, info kuis, & CTA)
 │   ├── globals.css               # Clay design tokens & animation utilities
+│   ├── materi/
+│   │   └── page.tsx              # Halaman materi konsep Moral Development
+│   ├── petunjuk/
+│   │   └── page.tsx              # Panduan & tata cara kuis terbaru
 │   ├── quiz/
-│   │   └── page.tsx              # Halaman interaktif kuis
+│   │   └── page.tsx              # Halaman kuis (Timer 30s, satu arah, skip, submit)
 │   ├── result/
-│   │   └── page.tsx              # Halaman skor & ringkasan hasil
+│   │   └── page.tsx              # Halaman skor, statistik, & pembahasan jawaban
 │   ├── leaderboard/
-│   │   └── page.tsx              # Peringkat nilai peserta
+│   │   └── page.tsx              # Peringkat nilai peserta dari Google Sheets
 │   └── api/
 │       ├── questions/
-│       │   └── route.ts          # Endpoint penyedia soal publik
+│       │   └── route.ts          # Endpoint penyedia 10 soal acak
 │       ├── submit/
-│       │   └── route.ts          # Endpoint validasi, scoring, & Sheets append
+│       │   └── route.ts          # Endpoint validasi, kalkulasi skor, review, & Sheets append
 │       └── leaderboard/
-│           └── route.ts          # Endpoint fetch & sort ranking
+│           └── route.ts          # Endpoint fetch & sort ranking peserta
 ├── components/
-│   ├── Navbar.tsx                # Clay-styled navigation bar
-│   ├── ClayTitle.tsx             # Judul bergaya claymation multi-warna
+│   ├── Navbar.tsx                # Clay navigation bar
+│   ├── Footer.tsx                # Footer info program studi PPKn
+│   ├── ClayTitle.tsx             # Judul bergaya clay stop-motion multi-warna
 │   ├── ClayBadge.tsx             # Lencana pill clay
+│   ├── QuizTimer.tsx             # Komponen hitung mundur 30s dengan progress dinamis
+│   ├── QuizCard.tsx              # Card kontainer pertanyaan aktif
 │   ├── AnswerOption.tsx          # Pilihan jawaban A/B/C/D interaktif
-│   ├── ProgressBar.tsx           # Indikator progres pengerjaan dinamis
-│   ├── QuestionNavigator.tsx     # Nomor navigasi soal (Current, Answered, Unanswered)
-│   ├── QuizCard.tsx              # Card kontainer soal aktif
-│   ├── SubmitModal.tsx           # Modal konfirmasi sebelum submit
-│   ├── ResultCard.tsx            # Card penampil nilai besar & evaluasi
-│   ├── ScoreStats.tsx            # Statistik benar, salah, dan total soal
+│   ├── ProgressBar.tsx           # Indikator progres soal keseluruhan
+│   ├── QuestionNavigator.tsx     # Indikator status butir soal (Terjawab, Dilewati, Aktif)
+│   ├── SubmitModal.tsx           # Modal konfirmasi penyelesaian kuis
+│   ├── QuestionReview.tsx        # Komponen penampil pembahasan soal benar/salah
+│   ├── ResultCard.tsx            # Card penampil skor akhir & predikat
+│   ├── ScoreStats.tsx            # Statistik ringkas benar, salah, dan total
 │   ├── LeaderboardPodium.tsx     # Podium juara 1, 2, 3 bergaya clay
-│   ├── LeaderboardTable.tsx      # Tabel daftar peserta lengkap
+│   ├── LeaderboardTable.tsx      # Tabel daftar peringkat peserta lengkap
+│   ├── MusicPlayer.tsx           # Pemutar musik latar belakang bernuansa santai
+│   ├── ClickSound.tsx            # Efek suara tactile click saat menekan tombol
 │   ├── LoadingState.tsx          # Animasi loading stop-motion clay
-│   ├── ErrorState.tsx            # Komponen error handling & retry
-│   └── Footer.tsx                # Footer info program studi PPKn
+│   └── ErrorState.tsx            # Komponen penanganan error & retry
 ├── config/
-│   ├── site.ts                   # Konfigurasi identitas web & metadata
+│   ├── site.ts                   # Konfigurasi identitas web, label, & metadata
 │   └── theme.ts                  # Design tokens warna & tema clay
 ├── data/
-│   └── questions.ts              # Bank soal lengkap & kunci jawaban (server-only)
+│   └── questions.ts              # Bank 20 soal studi kasus & kunci jawaban (server-only)
 ├── lib/
 │   ├── calculateScore.ts         # Logika komparasi jawaban & hitung skor
 │   ├── getScoreLabel.ts          # Klasifikasi predikat nilai (Sangat Baik, Baik, dll.)
 │   ├── googleSheets.ts           # Integrasi Google Sheets API (Append & Fetch)
 │   └── leaderboard.ts            # Logika sorting ranking peserta
-├── public/
-│   └── assets/stitch/            # Aset visual referensi Google Stitch
 ├── types/
 │   └── quiz.ts                   # TypeScript interfaces & types
 ├── .env.example                  # Template variabel lingkungan
@@ -133,7 +160,7 @@ GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAAS
 
 > **Catatan Keamanan**:
 > - Jangan pernah menambahkan prefix `NEXT_PUBLIC_` pada kredensial Google.
-> - Private key harus mengandung tanda kutip ganda dan karakter newline `\n` tetap utuh agar dapat di-parse dengan benar oleh library runtime.
+> - Private key harus mengandung tanda kutip ganda dan karakter newline `\n` tetap utuh agar dapat di-parse dengan benar oleh runtime Node.js.
 
 ---
 
@@ -156,7 +183,7 @@ GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAAS
    E1: Nilai
    F1: Waktu Submit
    ```
-10. Salin alamat email Service Account (misalnya `xxx@yyy.iam.gserviceaccount.com`), lalu bagikan (Share) spreadsheet tersebut ke email Service Account dengan hak akses **Editor**.
+10. Salin alamat email Service Account (misalnya `xxx@yyy.iam.gserviceaccount.com`), lalu bagikan (*Share*) spreadsheet tersebut ke email Service Account dengan hak akses **Editor**.
 11. Ambil **Spreadsheet ID** dari URL Google Sheets:
     `https://docs.google.com/spreadsheets/d/<SPREADSHEET_ID>/edit`
 12. Masukkan ID, Email, dan Private Key ke dalam file `.env.local`.
@@ -198,12 +225,12 @@ npm run start
    - `GOOGLE_SERVICE_ACCOUNT_EMAIL`
    - `GOOGLE_PRIVATE_KEY` (Pastikan seluruh isi private key termasuk header dan footer dimasukkan).
 5. Klik tombol **Deploy**.
-6. Project siap digunakan secara live!
 
 ---
 
-## 9. Catatan Keamanan
+## 9. Catatan Keamanan & Integritas Kuis
 
 1. **Answer Key Isolation**: File `data/questions.ts` menggunakan import `"server-only"`. Upaya mengimpor file ini ke komponen klien akan memicu build error otomatis.
-2. **Scoring Integrity**: Frontend hanya mengirimkan nama dan pemetaan pilihan `{ questionId: optionId }`. Skor dihitung server-side sehingga peserta tidak dapat memanipulasi nilai melalui devtools.
-3. **Graceful Degradation**: Jika Google Sheets belum dikonfigurasi atau terjadi kegagalan jaringan sementara ke API Google, kuis tetap menghitung dan menampilkan skor peserta di layar secara normal tanpa mengalami crash.
+2. **One-Way Time-Restricted Exam**: Kuis tidak mengizinkan navigasi mundur dan setiap butir soal dibatasi 30 detik untuk mencegah manipulasi waktu.
+3. **Server-Side Scoring**: Frontend hanya mengirimkan identitas peserta dan jawaban yang dipilih. Penilaian dan review dihasilkan langsung oleh server.
+4. **Graceful Degradation**: Jika Google Sheets belum dikonfigurasi atau terjadi hambatan jaringan ke Google API, kuis tetap menghitung dan menampilkan skor peserta serta review jawaban tanpa mengalami crash.
